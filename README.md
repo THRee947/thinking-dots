@@ -1,87 +1,42 @@
 # thinking-dots
 
-Dotted thought-orb loading indicators for AI & agent UIs. Nine hand-tuned animated states, each shipped at two purpose-tuned sizes, rendered on a plain 2D canvas — no WebGL, no filters, works identically in Chrome, Safari and Firefox.
+SigVoid 黑洞风格的 Agent 状态动画。项目使用 React + Canvas 绘制，包含产品 Logo、黑白粒子和黑洞形变动画。
 
-[Live demo](https://three947.github.io/thinking-dots/) · [Repository](https://github.com/THRee947/thinking-dots) · [Report an issue](https://github.com/THRee947/thinking-dots/issues)
-
-## Install
+## 本地运行
 
 ```bash
-npm install thinking-orbs
+npm install
+npm run dev
 ```
 
-## Quick start
+启动后打开终端显示的本地地址即可查看预览。
 
-```tsx
-import { ThinkingOrb } from 'thinking-orbs';
+## 构建检查
 
-function Status() {
-  return <ThinkingOrb state="searching" size={64} />;
-}
+```bash
+npm run typecheck
+npm run build:demo
 ```
 
-## States
+## 当前状态
 
-Nine verbs an agent can be doing, each a distinct animation:
+- `working`：Logo 呼吸形变动画
+- `searching`：Logo 与快速吸附粒子动画
+- `solving`：Logo warp 形变、星点吸入和连续循环
+- `thinking`：原版思考轨道动画
+- `listening`：原版监听动画
+- `connecting`：原版连接动画
+- `planning`：原版规划动画
+- `shaping`：原版塑形动画
 
-```tsx
-<ThinkingOrb state="working" />     {/* particles on tilted orbits */}
-<ThinkingOrb state="searching" />   {/* a scan meridian sweeps a dotted globe */}
-<ThinkingOrb state="solving" />     {/* bands scramble, then click back solved */}
-<ThinkingOrb state="listening" />   {/* a waveform rolls through the rings */}
-<ThinkingOrb state="connecting" />  {/* a constellation wires itself */}
-<ThinkingOrb state="weaving" />     {/* three strands plait around the sphere */}
-<ThinkingOrb state="composing" />   {/* an undulating multi-band sash */}
-<ThinkingOrb state="breathing" />   {/* a ring slowly morphing */}
-<ThinkingOrb state="shaping" />     {/* dotted outline: circle → triangle → square */}
-```
+## 项目结构
 
-## Sizes
+- `src/ThinkingOrb.tsx`：Canvas 动画和状态绘制逻辑
+- `src/presets.ts`：状态与动画预设映射
+- `src/engine/`：动画引擎及黑洞绘制逻辑
+- `public/`：SigVoid Logo SVG 素材
+- `demo/`：本地预览页面
 
-Two tuned presets — separate designs, not a scale factor. `64` for chat-avatar scale, `20` for inline-text scale. Each carries its own dot count, dot size and speed tuning:
+## 说明
 
-```tsx
-<ThinkingOrb state="working" size={64} />
-<ThinkingOrb state="working" size={20} />
-```
-
-## Theme
-
-Strictly monochrome — light ink for dark backgrounds, dark ink for light backgrounds — with the mode picked automatically from the host project:
-
-```tsx
-<ThinkingOrb theme="auto" />   {/* default — detects from the project */}
-<ThinkingOrb theme="dark" />   {/* pin: light dots for dark backgrounds */}
-<ThinkingOrb theme="light" />  {/* pin: dark dots for light backgrounds */}
-```
-
-`auto` resolves in three layers and updates live when any of them change:
-
-1. an ancestor `data-theme="dark|light"` attribute or `dark`/`light` class (the Tailwind / shadcn convention), watched via `MutationObserver`;
-2. otherwise `prefers-color-scheme`, subscribed for live OS theme switches;
-3. SSR-safe — the canvas paints only on the client, after the theme has resolved.
-
-## Other props
-
-```tsx
-<ThinkingOrb
-  state="solving"
-  size={20}
-  speed={1.5}          // multiplier on the preset's baked speed
-  paused={false}       // freeze on the current frame
-  aria-label="Analysing repository…"  // overrides the per-state default
-/>
-```
-
-All other `<canvas>` props (`className`, `style`, `data-*`, …) pass through.
-
-## Accessibility & performance
-
-- `role="img"` with a sensible per-state `aria-label` out of the box.
-- `prefers-reduced-motion: reduce` renders a static representative frame — no animation — and still follows the live theme.
-- Every instance pauses automatically when scrolled offscreen (`IntersectionObserver`) or when the tab is hidden, and resumes in phase — all instances share one clock.
-- Plain 2D canvas arcs only: no `ctx.filter`, no SVG filters, no WebGL — the same pixels everywhere, cheap on low-end devices. Device-pixel-ratio capped at 2.
-
-## License
-
-MIT © Jakub Antalik
+这是 SigVoid 产品视觉探索版本。后续如果需要交给开发接入，可以直接复用 `ThinkingOrb` 组件，并通过 `state`、`size`、`speed` 和 `paused` 控制动画。
