@@ -23,11 +23,11 @@ npm run build:demo
 - `working`：Logo 呼吸形变动画
 - `searching`：Logo 与快速吸附粒子动画
 - `solving`：Logo warp 形变、星点吸入和连续循环
-- `thinking`：原版思考轨道动画
-- `listening`：原版监听动画
-- `connecting`：原版连接动画
-- `planning`：原版规划动画
-- `shaping`：原版塑形动画
+- `thinking`：黑色圆体思考动画
+- `listening`：黑色圆体监听动画
+- `connecting`：黑色圆体连接动画
+- `planning`：点阵规划动画
+- `shaping`：点阵塑形动画
 
 ## 项目结构
 
