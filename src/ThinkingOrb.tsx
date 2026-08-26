@@ -170,7 +170,7 @@ export function ThinkingOrb({
         // single group that scales in and out together.
         const particleCount = size <= 24 ? 14 : 20;
         for (let i = 0; i < particleCount; i++) {
-          const age = (t * 0.16 + i / particleCount) % 1;
+          const age = (t * 0.30 + i / particleCount) % 1;
           const a = i * 2.399 + Math.sin(t * 0.35 + i) * 0.05;
           const r = size * (0.46 - age * 0.18);
           ctx.globalAlpha = 0.34 + (1 - age) * 0.48;
