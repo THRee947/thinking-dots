@@ -1,8 +1,8 @@
-# thinking-orbs
+# thinking-dots
 
 Dotted thought-orb loading indicators for AI & agent UIs. Nine hand-tuned animated states, each shipped at two purpose-tuned sizes, rendered on a plain 2D canvas — no WebGL, no filters, works identically in Chrome, Safari and Firefox.
 
-[Live demo](https://orbs.jakubantalik.com) · [Repository](https://github.com/Jakubantalik/thinking-orbs) · [Report an issue](https://github.com/Jakubantalik/thinking-orbs/issues)
+[Live demo](https://three947.github.io/thinking-dots/) · [Repository](https://github.com/THRee947/thinking-dots) · [Report an issue](https://github.com/THRee947/thinking-dots/issues)
 
 ## Install
 
