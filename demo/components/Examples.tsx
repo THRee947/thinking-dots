@@ -28,11 +28,12 @@ const LARGE_CHIPS = new Set<OrbState>(['working', 'searching', 'connecting']);
 const LABEL_OVERRIDES: Partial<Record<OrbState, string>> = {
   weaving: 'planning',
   breathing: 'thinking',
-  connecting: 'solving',
+  connecting: 'connecting',
 };
 
 const HERO_PILLS: Array<{ state: OrbState; label: string }> = [
   { state: 'solving', label: 'Solving….' },
+  { state: 'logoSolving', label: 'Solving · logo….' },
   { state: 'composing', label: 'Thinking….' },
 ];
 

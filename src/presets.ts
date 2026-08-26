@@ -8,6 +8,7 @@ import { BASE_PROFILES, scaleCounts, scaleRadii } from './engine/profiles';
 import type { OrbSize, OrbState } from './types';
 
 export type ModeKey =
+  | 'blackhole'
   | 'orbits'
   | 'globe'
   | 'rubik'
@@ -19,13 +20,15 @@ export type ModeKey =
   | 'morph';
 
 export const STATE_TO_MODE: Record<OrbState, ModeKey> = {
-  working: 'orbits',
-  searching: 'globe',
-  solving: 'rubik',
-  listening: 'wave',
-  connecting: 'web',
+  working: 'blackhole',
+  searching: 'blackhole',
+  solving: 'blackhole',
+  logoSolving: 'blackhole',
+  logoBreathing: 'blackhole',
+  listening: 'blackhole',
+  connecting: 'blackhole',
   weaving: 'braid',
-  composing: 'ribbon',
+  composing: 'blackhole',
   breathing: 'ring',
   shaping: 'morph'
 };
@@ -40,6 +43,10 @@ export interface Preset {
 
 /** Exported so `scripts/extract-spec.ts` can emit them for the native ports. */
 export const PRESETS: Record<ModeKey, Record<OrbSize, Preset>> = {
+  blackhole: {
+    64: { speed: 1.25, count: 1, size: 1 },
+    20: { speed: 1.9, count: 1, size: 1 }
+  },
   orbits: {
     64: { speed: 1.885, count: 1, size: 1 },
     20: { speed: 3.9, count: 0.238, size: 2.4 }
@@ -98,6 +105,7 @@ export function resolvePreset(state: OrbState, size: OrbSize): Resolved {
   if (preset.count !== 1) opts = scaleCounts(opts, preset.count);
   if (preset.size !== 1) opts = scaleRadii(opts, preset.size);
   if (preset.extra) opts = { ...opts, ...preset.extra };
+  opts.variant = ({ working: 0, searching: 1, solving: 13, logoSolving: 13, logoBreathing: 11, listening: 3, connecting: 4, weaving: 5, composing: 6, breathing: 7, shaping: 8 } as Record<OrbState, number>)[state];
 
   const resolved: Resolved = { mode, speed: preset.speed, opts };
   cache.set(key, resolved);

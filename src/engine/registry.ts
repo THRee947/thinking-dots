@@ -10,6 +10,7 @@ import { frameMorph } from './morph';
 import { frameOrbits } from './orbits';
 import { frameRibbon } from './ribbon';
 import { frameWeb } from './web';
+import { drawBlackHole } from './blackhole';
 
 /**
  * The portable surface: pure geometry, no canvas. The React Native port
@@ -17,6 +18,9 @@ import { frameWeb } from './web';
  * by construction rather than by re-implementation.
  */
 export const MODE_FRAMES: Record<ModeKey, ModeFrame> = {
+  // Black-hole rendering is canvas-specific; keep a portable fallback so
+  // the existing native geometry contract remains complete.
+  blackhole: frameOrbits,
   orbits: frameOrbits,
   globe: frameGlobe,
   rubik: frameRubik,
@@ -36,3 +40,7 @@ export const MODE_DRAWS: Record<ModeKey, ModeDraw> = Object.fromEntries(
     ((ctx, size, t, dark, opts) => paintFrame(ctx, frame(size, t, opts), dark)) as ModeDraw
   ])
 ) as Record<ModeKey, ModeDraw>;
+
+// The black-hole mode uses layered canvas strokes rather than the shared
+// grayscale dot painter so its accretion disk can carry a restrained glow.
+MODE_DRAWS.blackhole = drawBlackHole;

@@ -5,7 +5,6 @@ import { ThinkingOrb } from 'thinking-orbs';
 const STATES: Array<{ state: OrbState; blurb: string }> = [
   { state: 'working', blurb: 'particles on tilted orbits' },
   { state: 'searching', blurb: 'a scan meridian sweeps the field' },
-  { state: 'solving', blurb: 'bands scramble, then click back' },
   { state: 'listening', blurb: 'a waveform rolls through the rings' },
   { state: 'connecting', blurb: 'a constellation wires itself' },
   { state: 'weaving', blurb: 'three strands plait around the sphere' },

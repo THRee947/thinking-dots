@@ -16,6 +16,8 @@ export type OrbState =
   | 'working'
   | 'searching'
   | 'solving'
+  | 'logoSolving'
+  | 'logoBreathing'
   | 'listening'
   | 'connecting'
   | 'weaving'
