@@ -40,3 +40,7 @@ npm run build:demo
 ## 说明
 
 这是 SigVoid 产品视觉探索版本。后续如果需要交给开发接入，可以直接复用 `ThinkingOrb` 组件，并通过 `state`、`size`、`speed` 和 `paused` 控制动画。
+
+## 动画预览
+
+<video src="./Area.mp4" controls muted loop width="720"></video>
