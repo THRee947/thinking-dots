@@ -43,4 +43,6 @@ npm run build:demo
 
 ## 动画预览
 
-<video src="./Area.mp4" controls muted loop width="720"></video>
+<video src="https://github.com/THRee947/thinking-dots/raw/refs/heads/main/Area.mp4" controls muted loop width="720"></video>
+
+[如果上方播放器没有显示，点击这里播放动画](https://github.com/THRee947/thinking-dots/raw/refs/heads/main/Area.mp4)
